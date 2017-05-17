@@ -1,0 +1,17 @@
+.separador {
+    margin: 25px 0;
+}
+
+.login {
+    margin-top: 80px;
+    color: #5d5d5d;
+    background: #f2f2f2;
+    padding: 26px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+@media screen and (max-width: 770px){
+   
+}
