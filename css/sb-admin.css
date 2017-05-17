@@ -57,7 +57,7 @@ body {
     padding-top: 15px;
     padding-bottom: 15px;
     line-height: 20px;
-    color: #999;
+    color: white;
 }
 
 .top-nav>li>a:hover,
@@ -122,7 +122,7 @@ ul.alert-dropdown {
         border: none;
         border-radius: 0;
         overflow-y: auto;
-        background-color: #222;
+        background-color: #337ab7;
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
