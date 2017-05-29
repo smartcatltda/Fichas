@@ -62,31 +62,78 @@ class controlador extends CI_Controller {
     function salir() {
         $this->session->sess_destroy();
     }
-    
+
     //****************************************MANTENEDOR USUARIOS********************************************
-    
-       function cargar_usuarios() {
+
+    function cargar_usuarios() {
         $datos = $this->modelo->cargar_usuarios();
         $data ['cantidad'] = $datos->num_rows();
         $data ['usuarios'] = $datos->result();
         $this->load->view("lista_usuarios", $data);
     }
-    
-     function insert_usuario() {
+
+    function insert_usuario() {
         $user = $this->input->post('user');
         $pass = $this->input->post('pass');
         $nombre = $this->input->post('nombre');
         $apellido = $this->input->post('apellido');
         $tipo = $this->input->post('tipo');
         $valor = 0;
-        $msg = "¡Usuario Ya Registrado!";
+        $msg = "¡ Usuario Ya Registrado !";
         if ($this->modelo->insert_usuario($nombre, $user, $pass, $apellido, $tipo) == 0) {
             $msg = "Usuario Registrado Correctamente";
             $valor = 1;
         }
         echo json_encode(array("valor" => $valor, "msg" => $msg));
     }
-    
-    
+
+    function update_usuario() {
+        $id = $this->input->post('id');
+        $user = $this->input->post('user');
+        $pass = $this->input->post('pass');
+        $nombre = $this->input->post('nombre');
+        $apellido = $this->input->post('apellido');
+        $tipo = $this->input->post('tipo');
+        $valor = 0;
+        $msg = "¡ Usuario Ya Registrado !";
+        if ($this->modelo->update_usuario($id, $user, $pass, $nombre, $apellido, $tipo) == 0) {
+            $msg = "Usuario Modificado Correctamente";
+            $valor = 1;
+        }
+        echo json_encode(array("valor" => $valor, "msg" => $msg));
+    }
+
+    function delete_usuario() {
+        $id = $this->input->post('id');
+        $msj = "¡ Error, algo salio mal !";
+        $valor = 0;
+        if ($this->modelo->delete_usuario($id) == 0) {
+            $msj = "Usuario Eliminado";
+            $valor = 1;
+        }
+        echo json_encode(array("valor" => $valor, "msj" => $msj));
+    }
+
+    function seleccionar_usuario() {
+        $id = $this->input->post('id');
+        $valor = 0;
+        $datos = $this->modelo->seleccionar_usuario($id)->result();
+        $cont = $this->modelo->seleccionar_usuario($id)->num_rows();
+        if ($cont > 0) {
+            $valor = 1;
+            foreach ($datos as $fila) {
+                $id = $fila->id_user;
+                $user = $fila->user;
+                $pass = $fila->pass;
+                $nombre = $fila->nombre_user;
+                $apellido = $fila->apellido_user;
+                $tipo = $fila->tipo_user;
+            }
+            echo json_encode(array("valor" => $valor, "id" => $id, "user" => $user, "pass" => $pass,
+                "nombre" => $nombre, "apellido" => $apellido, "tipo" => $tipo));
+        } else {
+            echo json_encode(array("valor" => $valor));
+        }
+    }
 
 }

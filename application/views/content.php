@@ -1,13 +1,27 @@
-<!--*****************MENSAJES********************-->
-<!--<div class="container-fluid">
-    <br>-->
-<!--    <div class="row">-->
-<!--        <div class="col-lg-12" style="position: fixed;">-->
+<!--*****************MENSAJES LOGIN********************-->
 <div class="alert alert-success text-center" id="msg_success" hidden></div>
 <div class="alert alert-danger text-center" id="msg_error" hidden></div>
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<!-- ********************* MODAL USUARIO ******************************* -->
+<div class="modal fade" id="Modal_user" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header alert-danger">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><span class="glyphicon glyphicon-warning-sign"></span>  ADVERTENCIA</h4>
+            </div>
+            <div class="modal-body">
+                <p class="h4">¿Está seguro que desea eliminar a este usuario?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancelar_user" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+                <button type="button" id="aceptar_user" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Aceptar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 <!--*****************LOGIN********************-->
 <div class="container-fluid">  
     <div class="row" id="login" hidden>
@@ -360,6 +374,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     </div>
                     <!-- /* -->
+                    <input type="text" id="id_user" hidden>
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
@@ -374,7 +389,14 @@
                             <div class="form-group">
                                 <label for="pass" class="col-sm-2 control-label">Contraseña</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="pass" placeholder="Contraseña">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="pass" placeholder="Contraseña">
+                                        <div class="input-group-btn">
+                                            <button type="button" id="mostar_pass" class="btn btn-default">
+                                                <i class=" glyphicon glyphicon-eye-open"></i>
+                                            </button>
+                                        </div>
+                                    </div>    
                                 </div>
                             </div>
                         </div>
@@ -405,8 +427,8 @@
                                 <label for="tipo_user" class="col-sm-2 control-label">Tipo</label>
                                 <div class="col-sm-10">
                                     <select id="tipo_user" class="form-control">
-                                        <option value="0">Administrador</option>
                                         <option value="1">Usuario</option>
+                                        <option value="0">Administrador</option>
                                     </select>
                                 </div>
                             </div>
@@ -419,13 +441,16 @@
                         </div>
                         <div class="col-lg-3 col-lg-offset-6 col-md-12 separador">
                             <button type="button" id="bt_guardar_user" class="btn btn-lg btn-primary btn-block"><span class="fa fa-fw fa-save"></span> Guardar</button>
+                            <button type="button" id="bt_editar_user" class="btn btn-lg btn-success btn-block"><span class="fa fa-fw fa-pencil"></span> Editar</button>
                         </div>
+
                     </div>
                     <div class="row">
                         <h2 class="page-header text-center">Lista de Usuarios</h2>
                         <div class="col-lg-12">
                             <div id="lista_usuarios" class="table-responsive"></div>
                         </div>
+
                     </div>
                     <!-- FIN MANTENEDOR USUARIO -->
                 </div>
